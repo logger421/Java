@@ -1,2 +1,4 @@
 # Java
-First attempt of edditing files using git & github
+Hello! Here i will push my projects & programs in Java. Have fun
+
+## Zadanie 1- Dekoder
