@@ -1,4 +1,4 @@
-# Zadanie 06
+# Zadanie 02
 
 ## Idea
 
