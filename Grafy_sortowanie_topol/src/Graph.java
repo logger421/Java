@@ -6,7 +6,7 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 
 public class Graph {
-	private int vertices;
+	protected int vertices;
 	List<List<Node>> list_of_neighbours = new ArrayList<>();
 	
 	public Graph() {
@@ -31,11 +31,16 @@ public class Graph {
 		for(int i  = 0; i < vertices; i++)
 			list_of_neighbours.add(i, new ArrayList<>());
 	}
-	
+
+	public void addEdge(int vertex1, int vertex2) {
+		int weight = 1;
+		list_of_neighbours.get(vertex1).add(new Node(vertex2, weight));
+	}
+
 	public void addEdge(int vertex1, int vertex2, int weight) {
 		list_of_neighbours.get(vertex1).add(new Node(vertex2, weight));
 	}
-	
+
 	public void printGraph() {
 		
 		int src_vertex = 0;
@@ -59,29 +64,30 @@ public class Graph {
 		System.out.println();
 	}
 	public void readGraphFromFile() {
-		String path = "";
+		String path;
 		
 		JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
-		if(fileChooser.showOpenDialog(new JFileChooser()) == JFileChooser.APPROVE_OPTION )
+		if(fileChooser.showOpenDialog(new JFileChooser()) == JFileChooser.APPROVE_OPTION ) {
 			path = fileChooser.getSelectedFile().getAbsolutePath();
-		
-		try(Scanner sc = new Scanner(new File(path));) {
-			vertices = sc.nextInt();
-			specifyNumberOfVertices(vertices);
-			while(sc.hasNext()) {
-				int x = sc.nextInt();
-				int y = sc.nextInt();
-				int weight = sc.nextInt();
-				addEdge(x, y, weight);
+			try(Scanner sc = new Scanner(new File(path))) {
+				vertices = sc.nextInt();
+				specifyNumberOfVertices(vertices);
+				while(sc.hasNext()) {
+					int x = sc.nextInt();
+					int y = sc.nextInt();
+					int weight = sc.nextInt();
+					addEdge(x, y, weight);
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
 			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		} else System.out.println("No file choosen!");
 	}
 	
-	private static class Node {
+	protected static class Node {
 		final int value;
 		final int weight;
+
 		public Node(int value, int weight) {
 			this.value = value;
 			this.weight = weight;
