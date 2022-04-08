@@ -7,7 +7,7 @@ Hello! Here i will push my projects & programs in Java. Have fun
 
 ## Zadanie 3 - Obsługa sklepu
 
-## Grafy - przeszukiwanie
+## Grafy - przeszukiwanie BFS&DFS
 
 ## Grafy - sortowanie topologiczne
 
