@@ -5,4 +5,10 @@ Hello! Here i will push my projects & programs in Java. Have fun
 
 ## Zadanie 2 - Kompresja
 
+## Zadanie 3 - Obsługa sklepu
+
 ## Grafy - przeszukiwanie
+
+## Grafy - sortowanie topologiczne
+
+## Grafy - algorytm Floyda-Warshalla
