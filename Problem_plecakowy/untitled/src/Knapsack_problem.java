@@ -1,20 +1,18 @@
 import javax.swing.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class Knapsack_problem {
     private int backpack_size = 24;
     private int[][] matrix;
-    private List<Pair> list = new ArrayList<>();
+    private List<Pair> przedmioty = new ArrayList<>();
 
     public Knapsack_problem() {
         readFromFile();
-        matrix = new int[list.size() + 1][backpack_size + 1];
+        matrix = new int[przedmioty.size() + 1][backpack_size + 1];
         main_algorithm();
     }
 
@@ -33,7 +31,7 @@ public class Knapsack_problem {
             try(Scanner sc = new Scanner(new File(path))) {
 
                 while(sc.hasNext()) {
-                    list.add(new Pair(sc.nextInt(), sc.nextInt()));
+                    przedmioty.add(new Pair(sc.nextInt(), sc.nextInt()));
                 }
             }catch (IOException e) {
                 e.printStackTrace();
