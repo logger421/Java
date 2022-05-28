@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Edge implements Comparable<Edge> {
     int start;
     int end;
@@ -16,6 +18,19 @@ public class Edge implements Comparable<Edge> {
         else if (weight > e.weight)
             return 1;
         return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge edge = (Edge) o;
+        return weight == edge.weight;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(weight);
     }
 
     @Override

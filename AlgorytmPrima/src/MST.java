@@ -54,6 +54,7 @@ public class MST {
             sum += x.weight;
         return sum;
     }
+
     public void readFile() {
         String path;
         JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
@@ -78,6 +79,7 @@ public class MST {
         Edge e = new Edge(x,y,w);
         graph.get(e.start).add(e);
     }
+
     private void initialiseList() {
         for(int i = 0; i < vertices; i++)
             graph.add(new ArrayList<Edge>());
