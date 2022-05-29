@@ -28,7 +28,7 @@ public class Edge implements Comparable<Edge>{
 
     @Override
     public String toString() {
-        return " (x: " + start + "->y: " + end + ") w: " + weight + " ";
+        return " (x->y: " + start + "->" + end + ") w: " + weight + " ";
     }
     //    @Override
 //    public int hashCode() {
