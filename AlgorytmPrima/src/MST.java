@@ -21,30 +21,23 @@ public class MST {
         edges_queue = new PriorityQueue<>();
     }
 
-    public void specifyNumberOfVertices(int n) {
-        vertices = n;
-        initialiseList();
-    }
-
     public int primsAlgorithm() {
         int starting_p = 4;
         visited.add(starting_p);
-        for(int i = 0; i < graph.get(starting_p).size(); i++)
-            edges_queue.add(graph.get(starting_p).get(i));
+        for(var edge : graph.get(starting_p))
+            edges_queue.add(edge);
         System.out.println(edges_queue);
 
-        while(visited.size() < vertices) {
+        while( MST.size() < vertices && !edges_queue.isEmpty()) {
             Edge current = edges_queue.poll();
             if(visited.contains(current.end))
                 continue;
-            else {
-                visited.add(current.end);
-                MST.add(current);
-                for(int i = 0; i < graph.get(current.start).size(); i++)
-                    edges_queue.add(graph.get(current.start).get(i));
-            }
+            visited.add(current.end);
+            MST.add(current);
+            for(var edge : graph.get(current.end))
+                if(!visited.contains(edge.end))
+                    edges_queue.add(edge);
         }
-
         int result = sum_of_edges_weight();
         return result;
     }
@@ -78,6 +71,11 @@ public class MST {
     public void addEdge(int x, int y, int w) {
         Edge e = new Edge(x,y,w);
         graph.get(e.start).add(e);
+    }
+
+    public void specifyNumberOfVertices(int n) {
+        vertices = n;
+        initialiseList();
     }
 
     private void initialiseList() {
