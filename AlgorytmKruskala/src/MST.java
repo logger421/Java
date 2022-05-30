@@ -6,17 +6,19 @@ import java.util.*;
 public class MST {
     private int vertices;
 
-    Set<Edge> mst_edges;
+    List<Edge> mst_edges;
     PriorityQueue<Edge> all_edges;
-    Vector<Integer> disjointsets;
+    List<Integer> disjointsets;
 
     public MST(){
-        mst_edges = new HashSet<Edge>();
+        mst_edges = new ArrayList<>();
         all_edges = new PriorityQueue<Edge>();
+        disjointsets = new ArrayList<>();
+        readFromFile();
+        initialiseList();
     }
 
     public int KurskalAlgorithm() {
-        readFromFile();
         Edge current;
         while(!all_edges.isEmpty()) {
             current = all_edges.poll();
@@ -30,8 +32,6 @@ public class MST {
         return suma;
     }
     private boolean willGenerateCycles(Edge e) {
-        disjointsets = new Vector<>();
-        initialiseList();
         if(disjointsets.get(e.start) == disjointsets.get(e.end))
             return true;
         else {
@@ -46,14 +46,8 @@ public class MST {
         }
     }
 
-    private void initialiseList() {
-        for(int i = 0; i < vertices; i++)
-            disjointsets.add(i);
-    }
-
     public void readFromFile() {
         String path;
-
         JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
         if(fileChooser.showOpenDialog(new JFileChooser()) == JFileChooser.APPROVE_OPTION ) {
             path = fileChooser.getSelectedFile().getAbsolutePath();
@@ -73,5 +67,10 @@ public class MST {
 
     private void addEdge(int x, int y, int weight) {
         all_edges.add(new Edge(x, y, weight));
+    }
+
+    private void initialiseList() {
+        for(int i = 0; i < vertices; i++)
+            disjointsets.add(i);
     }
 }
