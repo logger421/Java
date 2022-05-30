@@ -30,11 +30,11 @@ public class Edge implements Comparable<Edge> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(weight);
+        return Objects.hash(toString());
     }
 
     @Override
     public String toString() {
-        return " ( " + start + ", " + end + ", " + weight + " ) ";
+        return start + ", " + end + ", " + weight;
     }
 }
